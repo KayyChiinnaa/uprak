@@ -1,8 +1,8 @@
--- Database untuk sistem peminjaman barang
+
 CREATE DATABASE IF NOT EXISTS db_peminjaman;
 USE db_peminjaman;
 
--- Tabel pengguna
+
 CREATE TABLE users (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabel barang (tanpa kolom kategori)
+
 CREATE TABLE barang (
     id INT PRIMARY KEY AUTO_INCREMENT,
     kode_barang VARCHAR(20) UNIQUE NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE barang (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabel peminjaman dengan status persetujuan
+
 CREATE TABLE peminjaman (
     id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
@@ -42,12 +42,10 @@ CREATE TABLE peminjaman (
     FOREIGN KEY (approved_by) REFERENCES users(id)
 );
 
--- Insert data dummy
 INSERT INTO users (username, password, nama_lengkap, email, role) VALUES 
 ('admin', MD5('admin123'), 'Administrator', 'admin@example.com', 'admin'),
 ('user', MD5('user123'), 'User Demo', 'user@example.com', 'user');
 
--- Insert barang dummy (tanpa kategori)
 INSERT INTO barang (kode_barang, nama_barang, jumlah_tersedia, kondisi) VALUES
 ('BRG001', 'Laptop Dell Latitude 7490', 5, 'Baik'),
 ('BRG002', 'Proyektor Epson EB-X41', 3, 'Baik'),
